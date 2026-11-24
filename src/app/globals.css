@@ -9,3 +9,11 @@ body {
 .clickable-row {
   cursor: pointer;
 }
+
+.example-question {
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+.example-question:hover {
+  border-color: var(--mantine-color-indigo-4);
+  background-color: var(--mantine-color-indigo-0);
+}

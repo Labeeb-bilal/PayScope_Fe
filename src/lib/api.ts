@@ -1,5 +1,5 @@
 import type {
-  Benchmark, CountryInsight, DepartmentInsight, Distribution, Employee, EmployeeDetail, EmployeeInput, EmployeeQuery,
+  AssistantStatus, Benchmark, CountryInsight, DepartmentInsight, Distribution, Employee, EmployeeDetail, EmployeeInput, EmployeeQuery,
   LevelInsight, Meta, Page, PayEquity, Summary,
 } from './types';
 
@@ -57,4 +57,6 @@ export const api = {
   benchmark: (q: { jobTitle: string; level?: string; country?: string }) => request<Benchmark>(`/insights/benchmark${toQueryString(q)}`),
   payEquity: (q: { threshold?: number; country?: string; department?: string }) =>
     request<PayEquity>(`/insights/pay-equity${toQueryString(q)}`),
+
+  assistantStatus: () => request<AssistantStatus>('/assistant/status'),
 };

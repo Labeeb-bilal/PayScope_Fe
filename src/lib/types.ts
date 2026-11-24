@@ -154,3 +154,28 @@ export interface PayEquity {
   totalGapUsd: number;
   items: PayEquityItem[];
 }
+
+// ── AI assistant ──────────────────────────────────────
+
+export interface AssistantStatus {
+  enabled: boolean;
+  model: string;
+}
+
+export interface ChatTurn {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
+/** A tool the assistant ran to answer: shown as a badge so HR can see where numbers came from. */
+export interface ToolUse {
+  name: string;
+  args: Record<string, unknown>;
+  ok: boolean;
+}
+
+export type AssistantStreamEvent =
+  | ({ type: 'tool_call' } & ToolUse)
+  | { type: 'text_delta'; text: string }
+  | { type: 'done'; answer: string; toolsUsed: ToolUse[] }
+  | { type: 'error'; code: string; message: string };
