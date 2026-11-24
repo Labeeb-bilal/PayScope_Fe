@@ -1,9 +1,12 @@
 import type { NextConfig } from 'next';
+import { parseApiUrl } from './src/lib/env';
 
-// Static export: the Express API serves these files in production (one deployable, same origin).
+parseApiUrl(process.env.NEXT_PUBLIC_API_URL);
+
 const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
+  reactStrictMode: true,
   images: { unoptimized: true },
   experimental: { optimizePackageImports: ['@mantine/core', '@mantine/hooks', '@tabler/icons-react'] },
 };

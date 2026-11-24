@@ -8,7 +8,6 @@ import { formatCompactMoney, formatMoney, formatNumber, formatPercent } from '@/
 import { useInsight, useMeta } from '@/lib/hooks';
 import { Loading, Panel } from './Panels';
 
-/** Surfaces people paid well below peers in the same role, level and country, with the cost of fixing it. */
 export function PayEquityPanel({ onOpenEmployee }: { onOpenEmployee: (id: number) => void }) {
   const { data: meta } = useMeta();
   const [threshold, setThreshold] = useState('0.8');

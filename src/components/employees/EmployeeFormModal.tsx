@@ -10,7 +10,6 @@ import type { EmployeeDetail, EmployeeInput, Level } from '@/lib/types';
 interface Props {
   opened: boolean;
   onClose: () => void;
-  /** When set, the form edits this employee; otherwise it creates a new one. */
   employee?: EmployeeDetail;
   onSaved?: (e: EmployeeDetail) => void;
 }

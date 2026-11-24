@@ -2,9 +2,9 @@ import type {
   AssistantStatus, Benchmark, CountryInsight, DepartmentInsight, Distribution, Employee, EmployeeDetail, EmployeeInput, EmployeeQuery,
   LevelInsight, Meta, Page, PayEquity, Summary,
 } from './types';
+import { env } from './env';
 
-/** Empty in production (same origin); http://localhost:4000 in dev. */
-export const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? '';
+export const API_BASE = env.apiUrl;
 
 export class ApiError extends Error {
   constructor(public status: number, message: string, public code?: string) {
@@ -12,7 +12,6 @@ export class ApiError extends Error {
   }
 }
 
-/** Builds a query string, dropping empty values so URLs stay clean and cache keys stable. */
 export function toQueryString(params: object): string {
   const search = new URLSearchParams();
   for (const [key, value] of Object.entries(params)) {

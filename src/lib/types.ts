@@ -1,5 +1,3 @@
-// Mirrors the backend response shapes. Kept small and explicit so the UI fails at compile time if the API changes.
-
 export type Level = 'L1' | 'L2' | 'L3' | 'L4' | 'L5';
 
 export interface Employee {
@@ -155,8 +153,6 @@ export interface PayEquity {
   items: PayEquityItem[];
 }
 
-// ── AI assistant ──────────────────────────────────────
-
 export interface AssistantStatus {
   enabled: boolean;
   model: string;
@@ -167,7 +163,6 @@ export interface ChatTurn {
   content: string;
 }
 
-/** A tool the assistant ran to answer: shown as a badge so HR can see where numbers came from. */
 export interface ToolUse {
   name: string;
   args: Record<string, unknown>;

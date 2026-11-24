@@ -5,10 +5,6 @@ import ReactMarkdown, { type Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { EMPLOYEE_LINK_PREFIX, linkEmployeeCodes } from '@/lib/assistant';
 
-/**
- * Renders an assistant answer: GitHub-flavoured Markdown (tables included) with Mantine styling.
- * Employee codes become buttons that open the employee drawer. Raw HTML is not rendered.
- */
 export function AssistantMarkdown({ content, onOpenEmployee }: { content: string; onOpenEmployee: (code: string) => void }) {
   const components: Components = {
     table: ({ children }) => (

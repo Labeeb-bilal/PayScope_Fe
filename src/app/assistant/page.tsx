@@ -27,7 +27,6 @@ const EXAMPLES = [
   'Which department costs the most, and how does pay rise by level?',
 ];
 
-/** The API accepts up to 20 messages ending with the user's; failed or empty turns are not resent. */
 function historyFor(messages: UiMessage[]): ChatTurn[] {
   return messages
     .filter((m) => !m.error && m.content.trim())
@@ -129,7 +128,6 @@ export default function AssistantPage() {
 
   useEffect(() => () => abortRef.current?.abort(), []);
 
-  /** Applies a change to the assistant message being streamed (always the last one). */
   const updateLast = (patch: (m: UiMessage) => UiMessage) =>
     setMessages((all) => (all.length ? [...all.slice(0, -1), patch(all[all.length - 1]!)] : all));
 
@@ -149,7 +147,6 @@ export default function AssistantPage() {
         (event) => {
           if (event.type === 'tool_call') updateLast((m) => ({ ...m, tools: [...m.tools, { name: event.name, args: event.args, ok: event.ok }] }));
           else if (event.type === 'text_delta') updateLast((m) => ({ ...m, content: m.content + event.text }));
-          // The final answer replaces any text streamed before a tool call.
           else if (event.type === 'done') updateLast((m) => ({ ...m, content: event.answer, tools: event.toolsUsed, streaming: false }));
           else if (event.type === 'error') updateLast((m) => ({ ...m, streaming: false, error: event.message }));
         },

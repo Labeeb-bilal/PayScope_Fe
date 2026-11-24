@@ -1,10 +1,6 @@
 import { API_BASE, ApiError } from './api';
 import type { AssistantStreamEvent, ChatTurn, ToolUse } from './types';
 
-/**
- * Incremental Server-Sent Events parser. Feed it raw text chunks as they arrive (chunks can split
- * an event anywhere); it returns the events completed so far and keeps the remainder buffered.
- */
 export function createSseParser() {
   let buffer = '';
   return (chunk: string): AssistantStreamEvent[] => {
@@ -24,17 +20,12 @@ export function createSseParser() {
       try {
         events.push({ type, ...JSON.parse(data.join('\n')) } as AssistantStreamEvent);
       } catch {
-        // Ignore malformed frames rather than breaking the whole answer.
       }
     }
     return events;
   };
 }
 
-/**
- * POSTs the conversation and calls `onEvent` for each streamed event. Uses fetch + a stream reader
- * because EventSource only supports GET. Non-2xx responses (validation, rate limit, disabled) throw ApiError.
- */
 export async function streamChat(
   messages: ChatTurn[],
   onEvent: (event: AssistantStreamEvent) => void,
@@ -59,7 +50,6 @@ export async function streamChat(
   }
 }
 
-/** "pay_benchmark · Data Engineer · L3 · AE": the tool plus the values it was called with. */
 export function toolBadgeLabel(tool: ToolUse): string {
   const values = Object.values(tool.args)
     .filter((v) => v !== undefined && v !== null && v !== '')
@@ -70,16 +60,12 @@ export function toolBadgeLabel(tool: ToolUse): string {
 const EMPLOYEE_CODE = /\bACME-\d{5}\b/g;
 export const EMPLOYEE_LINK_PREFIX = '#employee:';
 
-/**
- * Turns employee codes in Markdown into links the chat renders as "open employee" buttons.
- * Code spans and fenced code blocks are left untouched, as are codes that are already link text.
- */
 export function linkEmployeeCodes(markdown: string): string {
   return markdown
     .split(/(```[\s\S]*?```|`[^`\n]*`)/g)
     .map((part, i) =>
       i % 2 === 1
-        ? part // code span or block
+        ? part
         : part.replace(EMPLOYEE_CODE, (code, offset: number, whole: string) =>
             whole[offset - 1] === '[' || whole.slice(offset - EMPLOYEE_LINK_PREFIX.length, offset) === EMPLOYEE_LINK_PREFIX
               ? code

@@ -7,7 +7,6 @@ import { formatMoney } from '@/lib/format';
 import { useInsight, useMeta } from '@/lib/hooks';
 import { Loading, Panel } from './Panels';
 
-/** Answers "what do we pay a <role> in <country>?". The question HR gets asked most. */
 export function BenchmarkPanel() {
   const { data: meta } = useMeta();
   const [jobTitle, setJobTitle] = useState<string | null>('Software Engineer');

@@ -22,7 +22,6 @@ export default function EmployeesPage() {
   const [openId, setOpenId] = useState<number | null>(null);
   const [createOpen, setCreateOpen] = useState(false);
 
-  /** Any filter change resets to page 1, otherwise HR can land on an empty page 37. */
   const updateFilter = (patch: Partial<EmployeeQuery>) => setQuery((q) => ({ ...q, ...patch, page: 1 }));
 
   useEffect(() => {
