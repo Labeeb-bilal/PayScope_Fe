@@ -23,7 +23,7 @@ interface UiMessage extends ChatTurn {
 const EXAMPLES = [
   'What do we pay a Senior Data Engineer in the UAE?',
   'Who in Sales India is underpaid?',
-  "Show Priya Sharma's salary history",
+  "Show Kavya Kapoor's salary history",
   'Which department costs the most, and how does pay rise by level?',
 ];
 
