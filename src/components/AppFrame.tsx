@@ -1,7 +1,7 @@
 'use client';
 
 import { AppShell, Group, NavLink, Text, ThemeIcon } from '@mantine/core';
-import { IconChartBar, IconCoin, IconUsers } from '@tabler/icons-react';
+import { IconChartBar, IconCoin, IconSparkles, IconUsers } from '@tabler/icons-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
@@ -9,6 +9,7 @@ import type { ReactNode } from 'react';
 const NAV = [
   { href: '/', label: 'Employees', icon: IconUsers },
   { href: '/insights/', label: 'Pay insights', icon: IconChartBar },
+  { href: '/assistant/', label: 'Ask AI', icon: IconSparkles },
 ];
 
 export function AppFrame({ children }: { children: ReactNode }) {

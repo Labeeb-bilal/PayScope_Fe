@@ -22,7 +22,6 @@ function Field({ label, value }: { label: string; value: React.ReactNode }) {
   );
 }
 
-/** Where this person sits against peers (same title, level, country): the question HR asks before any raise. */
 function PeerComparison({ employee }: { employee: EmployeeDetail }) {
   const { data } = useInsight(`peer-${employee.jobTitle}-${employee.level}-${employee.countryCode}`, () =>
     api.benchmark({ jobTitle: employee.jobTitle, level: employee.level, country: employee.countryCode }),

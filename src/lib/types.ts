@@ -1,5 +1,3 @@
-// Mirrors the backend response shapes. Kept small and explicit so the UI fails at compile time if the API changes.
-
 export type Level = 'L1' | 'L2' | 'L3' | 'L4' | 'L5';
 
 export interface Employee {
@@ -154,3 +152,25 @@ export interface PayEquity {
   totalGapUsd: number;
   items: PayEquityItem[];
 }
+
+export interface AssistantStatus {
+  enabled: boolean;
+  model: string;
+}
+
+export interface ChatTurn {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
+export interface ToolUse {
+  name: string;
+  args: Record<string, unknown>;
+  ok: boolean;
+}
+
+export type AssistantStreamEvent =
+  | ({ type: 'tool_call' } & ToolUse)
+  | { type: 'text_delta'; text: string }
+  | { type: 'done'; answer: string; toolsUsed: ToolUse[] }
+  | { type: 'error'; code: string; message: string };

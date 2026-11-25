@@ -16,7 +16,6 @@ export function useMeta() {
 }
 
 export function useEmployees(q: EmployeeQuery) {
-  // keepPreviousData avoids the table flashing empty between pages/filters
   return useQuery({ queryKey: keys.employees(q), queryFn: () => api.listEmployees(q), placeholderData: keepPreviousData });
 }
 
@@ -24,7 +23,6 @@ export function useEmployee(id: number | null) {
   return useQuery({ queryKey: keys.employee(id ?? 0), queryFn: () => api.getEmployee(id!), enabled: id !== null });
 }
 
-/** Any write can change lists, the employee and every insight, so invalidate all three. */
 function useInvalidateAfterWrite() {
   const qc = useQueryClient();
   return () => {

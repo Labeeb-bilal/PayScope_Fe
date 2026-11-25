@@ -2,7 +2,9 @@
 # Env files (any variant: .env, .env.local, .env.production, ...)
 .env
 .env.*
-!.env.example
+# Non-secret settings per environment are committed. NEXT_PUBLIC_* values end up in the browser bundle anyway.
+!.env.development
+!.env.production.example
 
 # Keys, certificates and credential files
 *.pem
