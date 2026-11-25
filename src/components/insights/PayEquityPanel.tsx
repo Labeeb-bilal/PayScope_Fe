@@ -41,7 +41,7 @@ export function PayEquityPanel({ onOpenEmployee }: { onOpenEmployee: (id: number
               : 'No one is below this threshold. 🎉'}
           </Alert>
           {data.items.length > 0 && (
-            <Table.ScrollContainer minWidth={760} mah={420}>
+            <Table.ScrollContainer minWidth={760} maxHeight={420}>
               <Table fz="sm" highlightOnHover stickyHeader>
                 <Table.Thead>
                   <Table.Tr>

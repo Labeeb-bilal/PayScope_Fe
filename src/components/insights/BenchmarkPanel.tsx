@@ -34,7 +34,7 @@ export function BenchmarkPanel() {
       }
     >
       {!jobTitle ? <Text c="dimmed" size="sm">Pick a job title.</Text> : isLoading || !data ? <Loading /> : (
-        <Table.ScrollContainer minWidth={700} mah={420}>
+        <Table.ScrollContainer minWidth={700} maxHeight={420}>
           <Table fz="sm" striped stickyHeader>
             <Table.Thead>
               <Table.Tr>
